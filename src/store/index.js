@@ -6,11 +6,11 @@ const logSlice = createSlice({
     name:'log',
     initialState: initialLogState,
     reducers: {
-        getLogs(){}, 
-        addLog(state, action){
-            console.log(action.payload);
-        },
-        removeLog(){} 
+        addLog(state, action){},
+        removeLog(){},
+        replaceLogs(state, action){
+            state.logs = action.payload;
+        }, 
     }
 });
 
