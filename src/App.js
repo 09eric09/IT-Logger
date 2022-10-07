@@ -4,6 +4,8 @@ import { logActions } from "./store";
 import SearchBar from "./components/UI/SearchBar";
 import Logs from "./components/logs/Logs";
 import Container from "./components/UI/Container";
+import AddLogModal from "./components/logs/AddLogModal";
+import AddBtn from "./components/UI/AddBtn";
 import 'materialize-css/dist/css/materialize.min.css';
 import M from 'materialize-css/dist/js/materialize.min.js';
 
@@ -28,7 +30,9 @@ const App = () => {
     <>
     <SearchBar/>
     <Container>
-      <Logs/>
+    <AddLogModal/>
+    <AddBtn/>
+    <Logs/>
     </Container>
     </>
   );
