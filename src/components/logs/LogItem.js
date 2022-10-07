@@ -1,8 +1,14 @@
 import React from 'react';
 
-const LogItem = () => {
+const LogItem = ({log}) => {
   return (
-    <div>LogItem</div>
+    <>
+    <li className={'collection-item'}>
+    <div>
+      <a className={`modal-trigger ${log.attention ? 'red-text' : 'blue-text'}`} href="#edit-log-modal">{log.message}</a>
+    </div>
+    </li>
+    </>
   )
 }
 
