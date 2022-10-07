@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import classes from './AddLogModal.module.css';
+import { useSelector } from 'react-redux';
 
-const AddLogModal = () => {
+const EditLogModal = () => {
     const logs = useSelector(state => state.log.logs);
     const [message, setMessage] = useState('');
     const [attention, setAttention] = useState(false);
@@ -22,7 +21,7 @@ const AddLogModal = () => {
     }
 
   return (
-    <div id='add-log-modal' className='modal'>
+    <div id='edit-log-modal' className='modal'>
         <div className="modal-content">
             <h4>Enter System Log</h4>
             <div className="row">
@@ -65,5 +64,4 @@ const AddLogModal = () => {
     </div>
   )
 }
-
-export default AddLogModal;
+export default EditLogModal;
