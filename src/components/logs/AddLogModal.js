@@ -3,9 +3,20 @@ import { useSelector, useDispatch } from 'react-redux';
 import classes from './AddLogModal.module.css';
 
 const AddLogModal = () => {
+    const logs = useSelector(state => state.log.logs);
     const [message, setMessage] = useState('');
     const [attention, setAttention] = useState(false);
     const [tech, setTech] = useState('');
+
+    const submitHandler = () => {
+        let data = {
+            message: message,
+            attention: attention, 
+            tech: tech
+        }
+
+        console.log(data);
+    }
 
   return (
     <div id='add-log-modal' className='modal'>
@@ -39,14 +50,14 @@ const AddLogModal = () => {
                     value={attention}
                     onChange={()=> setAttention(attention => !attention)}
                     />
-                    </label>
                     <span>Needs Attention</span>
+                    </label>
                     </p>
                 </div>
             </div>
         </div>
         <div className="modal-footer">
-            <a href="#" className="modal-close waves-effect waves-green btn-flat" >Enter</a>
+            <a href="#" className="modal-close waves-effect waves-green blue btn" onClick={submitHandler}>Enter</a>
         </div>
     </div>
   )

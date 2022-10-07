@@ -30,9 +30,9 @@ const App = () => {
     <>
     <SearchBar/>
     <Container>
-    <AddLogModal/>
-    <AddBtn/>
-    <Logs/>
+      <AddLogModal/>
+      <AddBtn/>
+      <Logs/>
     </Container>
     </>
   );
