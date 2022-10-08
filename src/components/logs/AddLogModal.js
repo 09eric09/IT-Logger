@@ -4,6 +4,7 @@ import classes from './AddLogModal.module.css';
 
 const AddLogModal = () => {
     const logs = useSelector(state => state.log.logs);
+    const techs = useSelector(state => state.tech.techs);
     const [message, setMessage] = useState('');
     const [attention, setAttention] = useState(false);
     const [tech, setTech] = useState('');
@@ -35,9 +36,10 @@ const AddLogModal = () => {
             <div className="row">
                 <div className="input-field">
                     <select className="browser-default" onChange={(e)=> setTech(e.target.value)} name="tech" value={tech}>
-                        <option value="" disabled>Select a Technician</option>
-                        <option value="Jon Doe">Jon Doe</option>
-                        <option value="Jane Doe"></option>
+                    <option value="" disabled>Select a Technician</option>   
+                    {techs.map(tech => (
+                    <option value={tech.firstName} key={tech.id}>{tech.firstName} {tech.lastName}</option>
+                    ))}
                     </select>
                 </div>
             </div>
