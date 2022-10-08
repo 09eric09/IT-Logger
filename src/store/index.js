@@ -26,7 +26,9 @@ const techSlice = (createSlice({
     name: 'tech', 
     initialState: initialTechState,
     reducers: {
-        addTech(){}, 
+        addTech(state, action){
+            state.techs.push(action.payload);
+        }, 
         removeTech(state, action){
             state.techs = state.techs.filter(tech => tech.id !== action.payload);
         },

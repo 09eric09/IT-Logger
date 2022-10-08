@@ -1,11 +1,18 @@
 import React, { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { techActions } from '../../store';
 
 const AddTechModal = () => {
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
+    const dispatch = useDispatch();
 
     const submitHandler = () => {
+        let newTech = {
+            firstName: firstName,
+            lastName: lastName
+        }
+        dispatch(techActions.addTech(newTech));
         setFirstName('');
         setLastName('');
     }
