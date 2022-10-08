@@ -14,11 +14,29 @@ const logSlice = createSlice({
     }
 });
 
+const initialTechState = {techs: []};
+
+const techSlice = (createSlice({
+    name: 'tech', 
+    initialState: initialTechState,
+    reducers: {
+        addTech(){}, 
+        removeTech(){},
+        replaceTechs(state, action){
+            state.techs = action.payload;
+            console.log('reducer working');
+            console.log(action.payload);
+        }
+    }
+}));
+
 const store = configureStore({
     reducer: {
         log: logSlice.reducer,
+        tech: techSlice.reducer
     }
 });
 
 export const logActions = logSlice.actions;
+export const techActions = techSlice.actions;
 export default store;
