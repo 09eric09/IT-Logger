@@ -27,13 +27,10 @@ const App = () => {
   }
 
   useEffect(()=> {
-    //Initialize JS
-    M.AutoInit();
-  }, []);
-
-  useEffect(()=> {
     getLogs();
     getTechs();
+    //Initialize JS
+    M.AutoInit();
   }, []);
   
   return (
