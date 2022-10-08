@@ -24,8 +24,6 @@ const techSlice = (createSlice({
         removeTech(){},
         replaceTechs(state, action){
             state.techs = action.payload;
-            console.log('reducer working');
-            console.log(action.payload);
         }
     }
 }));
