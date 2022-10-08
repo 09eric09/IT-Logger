@@ -6,8 +6,14 @@ const logSlice = createSlice({
     name:'log',
     initialState: initialLogState,
     reducers: {
-        addLog(state, action){},
-        removeLog(){},
+        addLog(state, action){
+            state.logs.push(action.payload);
+            // console.log('log added');
+            // console.log(JSON.stringify(state, undefined, 2));
+        },
+        removeLog(state, action){
+            state.logs = state.logs.filter(log => log.id !== action.payload);
+        },
         replaceLogs(state, action){
             state.logs = action.payload;
         }, 
@@ -21,7 +27,9 @@ const techSlice = (createSlice({
     initialState: initialTechState,
     reducers: {
         addTech(){}, 
-        removeTech(){},
+        removeTech(state, action){
+            state.techs = state.techs.filter(tech => tech.id !== action.payload);
+        },
         replaceTechs(state, action){
             state.techs = action.payload;
         }
