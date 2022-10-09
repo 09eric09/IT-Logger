@@ -5,6 +5,13 @@ import Moment from 'react-moment';
 
 const LogItem = ({log}) => {
   const dispatch = useDispatch();
+  const removeHandler = () => {
+    dispatch(logActions.removeLog(log.id))
+    fetch(`/logs/${log.id}`, {
+      method: 'DELETE'
+    });
+  }
+
   return (
     <>
     <li className={'collection-item'}>
@@ -16,7 +23,7 @@ const LogItem = ({log}) => {
       <span className='black-text bold'> {log.tech}</span> on {''}
       <span className='black-text'><Moment format={'MM/DD/YY'}>{log.date}</Moment></span>
       </span>
-      <a onClick={()=> dispatch(logActions.removeLog(log.id))} href="#" className="secondary-content"><i className="material-icons grey-text">delete</i></a>
+      <a onClick={removeHandler} href="#" className="secondary-content"><i className="material-icons grey-text">delete</i></a>
     </div>
     </li>
     </>
