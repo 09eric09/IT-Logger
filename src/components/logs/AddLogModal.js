@@ -19,6 +19,14 @@ const AddLogModal = () => {
         }
 
         dispatch(logActions.addLog(data));
+        fetch(`/logs`, {
+            method: 'POST',
+            body: JSON.stringify(data),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+
         setMessage('');
         setAttention('');
         setTech('');

@@ -27,6 +27,20 @@
       "attention": false,
       "tech": "Sara Wilson",
       "date": "2019-05-31T19:57:35.544Z"
+    },
+    {
+      "message": "test message bitch",
+      "attention": true,
+      "tech": "Sam",
+      "date": "2022-10-09",
+      "id": 6
+    },
+    {
+      "message": "Wipe data from hard drive #0098",
+      "attention": true,
+      "tech": "Sam",
+      "date": "2022-10-09",
+      "id": 7
     }
   ],
   "techs": [
