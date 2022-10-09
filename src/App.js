@@ -1,5 +1,5 @@
-import React, {useEffect, useState} from "react";
-import { useDispatch } from "react-redux";
+import React, {useEffect} from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { logActions, techActions } from "./store";
 import SearchBar from "./components/UI/SearchBar";
 import Logs from "./components/logs/Logs";
@@ -9,24 +9,60 @@ import AddBtn from "./components/UI/AddBtn";
 import 'materialize-css/dist/css/materialize.min.css';
 import M from 'materialize-css/dist/js/materialize.min.js';
 
-const App = () => {
-  const dispatch = useDispatch();
-  const getLogs = () => {
-    fetch(`/logs`)
-    .then(res => res.json())
-    .then(data => dispatch(logActions.replaceLogs(data)));
-  }
+let isInit = true;
 
-  const getTechs = () => {
-    fetch( `/techs`)
-    .then(res => res.json())
-    .then(data => dispatch(techActions.replaceTechs(data)));
-  }
+const App = () => {
+  const logs = useSelector(state => state.log.logs);
+  const techs = useSelector(state => state.tech.techs);
+  const dispatch = useDispatch();
+ 
+  useEffect(()=> {
+    const getLogs = () => {
+      fetch(`https://react-430ca-default-rtdb.firebaseio.com/logs.json`)
+      .then(res => res.json())
+      .then(data => dispatch(logActions.replaceLogs(data || [])));
+    }
+    getLogs();
+  }, [dispatch]);
 
   useEffect(()=> {
-    getLogs();
+    const sendLogs = () => {
+      fetch(`https://react-430ca-default-rtdb.firebaseio.com/logs.json`, {
+        method: 'PUT', 
+        body: JSON.stringify(logs)
+      })
+    }
+    if (isInit) {
+      isInit = false;
+      return;
+    }
+    sendLogs();
+  }, [logs]);
+
+  useEffect(()=> {
+    const getTechs = () => {
+      fetch( `https://react-430ca-default-rtdb.firebaseio.com/techs.json`)
+      .then(res => res.json())
+      .then(data => dispatch(techActions.replaceTechs(data || [])));
+    }
     getTechs();
-    //Initialize JS
+  }, []);
+
+  useEffect(()=> {
+    const sendTechs = () => {
+      fetch(`https://react-430ca-default-rtdb.firebaseio.com/techs.json`, {
+        method: 'PUT', 
+        body: JSON.stringify(techs)
+      })
+    }
+    if (isInit) {
+      isInit = false;
+      return;
+    }
+    sendTechs();
+  }, [techs]);
+
+  useEffect(()=> {
     M.AutoInit();
   }, []);
   

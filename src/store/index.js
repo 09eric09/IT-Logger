@@ -8,8 +8,6 @@ const logSlice = createSlice({
     reducers: {
         addLog(state, action){
             state.logs.push(action.payload);
-            // console.log('log added');
-            // console.log(JSON.stringify(state, undefined, 2));
         },
         removeLog(state, action){
             state.logs = state.logs.filter(log => log.id !== action.payload);

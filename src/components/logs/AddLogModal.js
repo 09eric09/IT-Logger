@@ -1,22 +1,24 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import classes from './AddLogModal.module.css';
+import { logActions } from '../../store';
 
 const AddLogModal = () => {
-    const logs = useSelector(state => state.log.logs);
-    const techs = useSelector(state => state.tech.techs);
     const [message, setMessage] = useState('');
     const [attention, setAttention] = useState(false);
     const [tech, setTech] = useState('');
+    const techs = useSelector(state => state.tech.techs);
+    const date = new Date().toISOString().split('T')[0];
+    const dispatch = useDispatch();
 
     const submitHandler = () => {
         let data = {
             message: message,
             attention: attention, 
-            tech: tech
+            tech: tech,
+            date: date,
         }
 
-        console.log(data);
+        dispatch(logActions.addLog(data));
         setMessage('');
         setAttention('');
         setTech('');
