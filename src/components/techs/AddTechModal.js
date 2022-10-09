@@ -13,6 +13,13 @@ const AddTechModal = () => {
             lastName: lastName
         }
         dispatch(techActions.addTech(newTech));
+        fetch(`/techs`, {
+            method: 'POST', 
+            body: JSON.stringify(newTech),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
         setFirstName('');
         setLastName('');
     }
