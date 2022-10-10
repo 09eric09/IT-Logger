@@ -48,7 +48,7 @@ const AddLogModal = () => {
                     <select className="browser-default" onChange={(e)=> setTech(e.target.value)} name="tech" value={tech}>
                     <option value="" disabled>Select a Technician</option>   
                     {techs.map(tech => (
-                    <option value={tech.firstName} key={tech.id}>{tech.firstName} {tech.lastName}</option>
+                    <option value={`${tech.firstName} ${tech.lastName}`} key={tech.id}>{tech.firstName} {tech.lastName}</option>
                     ))}
                     </select>
                 </div>
