@@ -1,6 +1,6 @@
 import { createSlice, configureStore } from '@reduxjs/toolkit';
 
-const initialLogState = {logs:[]};
+const initialLogState = {logs:[], currentLog:null};
 
 const logSlice = createSlice({
     name:'log',
@@ -11,6 +11,13 @@ const logSlice = createSlice({
         },
         removeLog(state, action){
             state.logs = state.logs.filter(log => log.id !== action.payload);
+        },
+        getCurrentLog(state, action){
+            state.currentLog = action.payload;
+        },
+        updateLog(state, action){
+            const existingIndex = state.logs.findIndex(log => log.id === action.payload.id);
+            state.logs[existingIndex] = action.payload;
         },
         replaceLogs(state, action){
             state.logs = action.payload;

@@ -1,20 +1,45 @@
-import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import React, { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { logActions } from '../../store';
 
 const EditLogModal = () => {
-    const logs = useSelector(state => state.log.logs);
+    const currentLog = useSelector(state => state.log.currentLog);
+    const techs = useSelector(state => state.tech.techs);
+    const date = new Date().toISOString().split('T')[0];
+    const dispatch = useDispatch();
+
     const [message, setMessage] = useState('');
     const [attention, setAttention] = useState(false);
     const [tech, setTech] = useState('');
 
+    // console.log(currentLog);
+
+    useEffect(()=> {
+        if (currentLog) {
+            setMessage(currentLog.message);
+            setAttention(currentLog.attention);
+            setTech(currentLog.tech);
+        }
+      }, [currentLog]);
+
     const submitHandler = () => {
         let data = {
+            id: currentLog.id,
             message: message,
             attention: attention, 
-            tech: tech
+            tech: tech, 
+            date: date,
         }
 
-        console.log(data);
+        fetch(`logs/${currentLog.id}`, {
+            method: 'PUT', 
+            body: JSON.stringify(data), 
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+
+        dispatch(logActions.updateLog(data));
         setMessage('');
         setAttention('');
         setTech('');
@@ -34,9 +59,10 @@ const EditLogModal = () => {
             <div className="row">
                 <div className="input-field">
                     <select className="browser-default" onChange={(e)=> setTech(e.target.value)} name="tech" value={tech}>
-                        <option value="" disabled>Select a Technician</option>
-                        <option value="Jon Doe">Jon Doe</option>
-                        <option value="Jane Doe"></option>
+                        <option value="" disabled>Select a Technician</option>  
+                        {techs.map(tech => (
+                        <option value={`${tech.firstName} ${tech.lastName}`} key={tech.id}>{tech.firstName} {tech.lastName}</option>
+                        ))}
                     </select>
                 </div>
             </div>
