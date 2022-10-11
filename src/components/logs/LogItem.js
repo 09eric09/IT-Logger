@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { logActions } from '../../store';
+import { logActions } from '../../store/log-slice';
 import Moment from 'react-moment';
 
 const LogItem = ({log}) => {

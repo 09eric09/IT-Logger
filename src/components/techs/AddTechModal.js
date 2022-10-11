@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { techActions } from '../../store';
+import { techActions } from '../../store/tech-slice';
 
 const AddTechModal = () => {
     const [firstName, setFirstName] = useState('');

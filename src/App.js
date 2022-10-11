@@ -1,6 +1,7 @@
 import React, {useEffect} from "react";
 import { useDispatch } from "react-redux";
-import { logActions, techActions } from "./store";
+import { logActions } from "./store/log-slice";
+import { techActions } from "./store/tech-slice";
 import SearchBar from "./components/UI/SearchBar";
 import Logs from "./components/logs/Logs";
 import Container from "./components/UI/Container";

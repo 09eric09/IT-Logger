@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { techActions } from '../../store';
+import { techActions } from '../../store/tech-slice';
 
 const TechItem = ({tech}) => {
   const dispatch = useDispatch();

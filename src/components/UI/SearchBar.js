@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { logActions } from '../../store';
+import { logActions } from '../../store/log-slice';
 
 const SearchBar = () => {
   const [search, setSearch] = useState('');
