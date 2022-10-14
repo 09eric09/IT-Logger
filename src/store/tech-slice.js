@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const initialTechState = {techs: []};
+const initialTechState = {techs: [], techInfo: {}};
 
 const techSlice = (createSlice({
     name: 'tech', 
@@ -14,6 +14,9 @@ const techSlice = (createSlice({
         },
         replaceTechs(state, action){
             state.techs = action.payload;
+        }, 
+        techInfo(state, action){
+            state.techInfo = action.payload;
         }
     }
 }));

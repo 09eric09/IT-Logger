@@ -13,9 +13,9 @@ const TechItem = ({tech}) => {
   }
   return (
     <li className={'collection-item'}>
-      <Link to={`/tech-info/${tech.firstName}-${tech.lastName}`}>
+      <Link to={`/tech-info/${tech.firstName}-${tech.lastName}`} onClick={()=> dispatch(techActions.techInfo(tech))}>
         {tech.firstName} {tech.lastName}
-        <a onClick={removeHandler} className="secondary-content"><i className="material-icons grey-text">delete</i></a>
+        <button onClick={removeHandler} className="secondary-content"><i className="material-icons grey-text">delete</i></button>
       </Link>
     </li>
   )
