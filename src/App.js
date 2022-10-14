@@ -1,12 +1,11 @@
 import React, {useEffect} from "react";
+import { Route, Switch } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { logActions } from "./store/log-slice";
 import { techActions } from "./store/tech-slice";
 import SearchBar from "./components/UI/SearchBar";
-import Logs from "./components/logs/Logs";
-import Container from "./components/UI/Container";
-import Modals from './components/UI/Modals';
-import AddBtn from "./components/UI/AddBtn";
+import Home from "./components/pages/Home";
+import TechInfo from '../src/components/pages/TechInfo';
 import 'materialize-css/dist/css/materialize.min.css';
 import M from 'materialize-css/dist/js/materialize.min.js';
 
@@ -34,11 +33,10 @@ const App = () => {
   return (
     <>
     <SearchBar/>
-    <Container>
-      <Modals/>
-      <AddBtn/>
-      <Logs/>
-    </Container>
+    <Switch>
+      <Route exact path={'/'} component={Home}/>  
+      <Route  path={'/tech-info/:name'} component={TechInfo}/>
+    </Switch>
     </>
   );
 }
