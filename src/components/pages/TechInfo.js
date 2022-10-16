@@ -1,12 +1,14 @@
 import React from 'react'
 import { useSelector } from 'react-redux';
+import Container from '../UI/Container';
 
 const TechInfo = () => {
   const tech = useSelector(state=> state.tech.techInfo);
   return (
-    <div>
+    <Container>
       <h2>{tech.firstName} {tech.lastName}</h2>
-    </div>
+      <p>Tech info goes here</p>
+    </Container>
   )
 }
 
